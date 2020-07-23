@@ -1,0 +1,48 @@
+<div class="container">
+    <h1>Question</h1><hr>
+    <div class="lead well" style="padding:2px;margin:2px;border:2px solid grey;border-radius:5px;height:12s0px">
+        <div class="media m-1">
+            <div class="media-left">
+                <img src="/logo.png" class="mr-3" width="100px" width="100px" alt="...">
+            </div>
+            <div class="media-body">
+                <h3><b><b>Q:</b></b><b><%= @question.body %></b></h3>
+                <h6 class="mt-2" class="media-heading">By:<i><%= @question.email %></i></h6>
+                
+                <hr>
+
+                <div class="media-left m-1">
+                    <h3>Answers</h3>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal"
+                        data-target="#give-answer">Submit New Answer</button>
+                </div>
+                <% @answers.each do |answer| %>
+                <div class="media m-1" style="border-radius:5px;border:2px solid black;padding:5px;">
+                    <div class="media-left">
+                        <img src="/logo.png" class="mr-3" width="100px" width="100px" alt="...">
+                    </div>
+                    <div class="media-body">
+                    <h4><b><b>Ans:</b><%= answer.body %></b></h4>
+                        <h6 class="mt-1" class="media-heading">By:<%= answer.email %></h6>
+                        <div style="font-size:15px">
+                            <%= time_ago_in_words answer.created_at %>ago</div>
+                        
+                    </div>
+                </div>
+                <% end %>
+                <% if @answers.empty?%>
+                <div class="alert alert-info">
+                    <h4 class="alert-heading">No Answers yet!!</h4>
+                    <p>Add a <a onMouseOver="this.style.color='blue';this.style.textDecoration='underline'"
+                            onMouseOut="this.style.textDecoration='none';this.style.color='black'" data-toggle="modal"
+                            data-target="#give-answer">Answer</a> to be resolved.</p>
+                    <p class="mb-0">Here to help!</p>
+                </div>
+                <%end%>
+            </div>
+        </div>
+    </div>
+    <%= render 'home/new_answer_form' %>
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+    <div style="height:100px;background-color:cream">
+        <h1><u>Questions</u></h1>
+        <h4>The universe is the place where u can get lost forever!!</h4>
+    </div>
+    <hr>
+    <% @questions.each do |single| %>
+    <div class="lead well" style="padding:2px;margin:2px;border:2px solid grey;border-radius:5px;height:12s0px">
+        <div class="media">
+            <div class="media-left">
+                <img src="/logo.png" style="height:140px" class="mr-3" alt="...">
+            </div>
+
+            <div class="media-body" style="padding:4px;border-radius:5px;">
+
+                <div class="media-heading"><b><b><b>Q:</b> <%= single.body %></b></b></div>
+                <div style="font-size:15px">
+                    <div><b>by: </b><i><%= single.email%></i></div>
+                    <div>
+                        <%= time_ago_in_words single.created_at %> ago
+                    </div>
+                    <div>
+                        <a href="<%= question_path(single) %>" class="btn btn-success btn-xs">View Answers</a>
+                    </div>
+
+                </div>
+                </div>
+            </div>
+        </div>
+        <% end %>
+        <% if @questions.empty? %>
+        <div class="alert alert-info">
+            <h4 class="alert-heading">No questions yet!!</h4>
+            <p>Add a <a onMouseOver="this.style.color='blue';this.style.textDecoration='underline'"
+                    onMouseOut="this.style.textDecoration='none';this.style.color='black'" data-toggle="modal"
+                    data-target="#ask-question">question</a> to be resolved.</p>
+            <p class="mb-0">Here to help!</p>
+        </div>
+        <% end %>
+    </div>
